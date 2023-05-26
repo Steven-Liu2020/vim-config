@@ -51,7 +51,9 @@ set smartindent         " even better autoindent (e.g. add indent after '{')
 
 
 """" Cursor motion settings
+
 set scrolloff=3
+set textwidth=80
 
 
 """" Search settings
@@ -70,7 +72,15 @@ set cursorcolumn       " highlight current column
 
 set background=dark    " configure Vim to use brighter colors
 set autoread           " autoreload the file in Vim if it has been changed outside of Vim
+set autochdir          " auto change current work dir base on edit file
  
+
+"""" Auto remove trailing spaces
+
+autocmd BufWrite * if ! &bin | silent ! %s/\s\+$//ge | endif
+
+
+"""" Gutentags settings
 
 " gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
@@ -90,9 +100,5 @@ endif
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-set autochdir
-
-set textwidth=80
 
 let g:rehash268 = 1
