@@ -2,8 +2,10 @@
 
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+"Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
@@ -12,7 +14,7 @@ call plug#end()
 set number              " show line numbers
 set wrap                " wrap lines
 set encoding=utf-8      " set encoding to UTF-8 (default was "latin1")
-set mouse-=a             " enable mouse support (might not work well on Mac OS X)
+set mouse=a             " enable mouse support (might not work well on Mac OS X)
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw screen only when we need to
 set showmatch           " highlight matching parentheses / brackets [{()}]
@@ -27,6 +29,8 @@ set visualbell          " blink cursor on error, instead of beeping
 " move vertically by visual line (don't skip wrapped lines)
 nmap j gj
 nmap k gk
+nnoremap <silent> <c-p> :Files <CR>
+"nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 
 
 """" Vim Appearance
@@ -37,6 +41,8 @@ colorscheme molokai     " good colorschemes: murphy, slate, molokai, badwolf, so
 " use filetype-based syntax highlighting, ftplugins, and indentation
 syntax enable
 filetype plugin indent on
+" turn off search highlighting with <CR> (carriage-return)
+nnoremap <CR> :nohlsearch<CR><CR>
 
 
 """" Tab settings
@@ -53,16 +59,14 @@ set smartindent         " even better autoindent (e.g. add indent after '{')
 """" Cursor motion settings
 
 set scrolloff=3
-set textwidth=80
+set textwidth=120
 
 
 """" Search settings
 
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-
-" turn off search highlighting with <CR> (carriage-return)
-nnoremap <CR> :nohlsearch<CR><CR>
+set ignorecase
 
 
 """" Miscellaneous settings that might be worth enabling
@@ -79,6 +83,12 @@ set autochdir          " auto change current work dir base on edit file
 
 autocmd BufWrite * if ! &bin | silent ! %s/\s\+$//ge | endif
 
+"""" Configure taglist
+let Tlist_Show_One_File=1        "only show the tags on current file
+let Tlist_Exit_OnlyWindow=1      "exit vim when the taglist is the last wind
+let Tlist_Auto_Open=1            "auto open Tlist when open vim
+let Tlist_Use_Right_Window = 0   "show tlist window on the right if set 1
+let Tlist_Ctags_Cmd="/home/apple/bin/ctags" "set your ctags cmd path
 
 """" Gutentags settings
 
@@ -102,3 +112,4 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 let g:rehash268 = 1
+
