@@ -27,6 +27,7 @@ set laststatus=2        " always show statusline (even with only single window)
 ""set ruler               " show line and column number of the cursor on right side of statusline
 set visualbell          " blink cursor on error, instead of beeping
 set t_Co=256
+set backspace=2         "use backspace to delete character
 
 
 """" Key Bindings
@@ -92,7 +93,8 @@ let Tlist_Exit_OnlyWindow=1      "exit vim when the taglist is the last wind
 let Tlist_Auto_Open=0            "auto open Tlist when open vim if set 1
 let Tlist_Use_Right_Window = 0   "show tlist window on the right if set 1
 let Tlist_Ctags_Cmd="/home/apple/bin/ctags" "set your ctags cmd path
-noremap <leader>l :Tlist<CR>
+ "alt + l map Tlist open/close
+noremap l :Tlist<CR>          
 
 """" Gutentags settings
 
@@ -122,7 +124,8 @@ set tags=tags
 
 """ 树形结构 nerdtree
 noremap <leader>t :NERDTreeToggle<CR>
-noremap <leader>f :NERDTreeFind<CR>
+"alt + f map
+noremap f :NERDTreeFind<CR>
 
 "vim airline
 let g:airline#extensions#tabline#enabled = 1  "enabale tabline
@@ -139,11 +142,11 @@ let g:indentLine_conceallevel = 2 		" 使插件正常运行
 nmap <c-u> :TagbarToggle<CR>
 
 "vim fzf config
-nnoremap <silent> <Leader>p :Lines<CR>
+nnoremap <silent> <c-p> :GFiles<CR>
+nnoremap <silent> <Leader>f :Files <CR>
+nnoremap <silent> <Leader>l :Lines<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>s :Tags<CR>
-nnoremap <silent> <c-p> :Files <CR>
+nnoremap <silent> <Leader>g :Tags<CR>
 "nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-
 
 
