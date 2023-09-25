@@ -9,7 +9,7 @@ How to use:
 1.copy the contents of .vimrc to your home dir ~/  
 2.unzip the vim_plug.zip, copy the .vim in it to your home dir ~/  
 
-Maps:
+Maps:  
 1.ctrl-p: find git files  
 2.ctrl-u: show/close tagbar  
 3.ctrl-n: change to the next buffer  
